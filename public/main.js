@@ -21,13 +21,6 @@ canvasWindow.style.width = window.innerWidth + "px";
 var memory = [];
 var poppedMemory = [];
 const ctx = board.getContext("2d");
-// resize functionality
-function reportWindowSize() {
-    canvasWindow.style.height = window.innerHeight + "px";
-    canvasWindow.style.width = window.innerWidth + "px";
-    draw();
-}
-window.onresize = reportWindowSize;
 // storage
 function addLine(color, thickness, startX, startY) {
     var objStart = {
@@ -125,13 +118,60 @@ const pull = document.getElementsByClassName("pull")[0];
 var isOpen = false;
 pull.addEventListener("click", function (e) {
     const parent = e.target.parentElement.parentElement;
-    if (isOpen) {
-        parent.style.top = "-80px";
-        isOpen = false;
-        e.target.style.transform = "rotate(0deg)";
+    if (window.innerWidth <= 750) {
+        if (isOpen) {
+            isOpen = false;
+            parent.style.top = "0px";
+            parent.style.left = "-145px";
+            e.target.style.transform = "rotate(270deg)";
+        } else {
+            isOpen = true;
+            parent.style.top = "0px";
+            parent.style.left = "0px";
+            e.target.style.transform = "rotate(90deg)";
+        }
     } else {
-        parent.style.top = "0px";
-        isOpen = true;
-        e.target.style.transform = "rotate(+180deg)";
+        if (isOpen) {
+            parent.style.top = "-80px";
+            parent.style.left = "0px";
+            isOpen = false;
+            e.target.style.transform = "rotate(0deg)";
+        } else {
+            parent.style.top = "0px";
+            parent.style.left = "0px";
+            isOpen = true;
+            e.target.style.transform = "rotate(+180deg)";
+        }
     }
 });
+// resize functionality
+const nav = document.getElementsByTagName("nav")[0];
+
+function reportWindowSize() {
+    canvasWindow.style.height = window.innerHeight + "px";
+    canvasWindow.style.width = window.innerWidth + "px";
+    if (isOpen) {
+        if (window.innerWidth <= 750) {
+            nav.style.top = "0px";
+            nav.style.left = "0px";
+            pull.style.transform = "rotate(90deg)";
+        } else {
+            nav.style.left = "0px";
+            nav.style.top = "0px";
+            pull.style.transform = "rotate(180deg)";
+        }
+    } else {
+        if (window.innerWidth <= 750) {
+            nav.style.top = "0px";
+            nav.style.left = "-145px";
+            pull.style.transform = "rotate(270deg)";
+        } else {
+            nav.style.left = "0px";
+            nav.style.top = "-80px";
+            pull.style.transform = "rotate(0deg)"
+        }
+    }
+
+    draw();
+}
+window.onresize = reportWindowSize;

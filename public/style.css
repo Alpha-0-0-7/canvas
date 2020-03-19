@@ -59,8 +59,9 @@ nav {
     align-items: center;
     display: flex;
     height: auto;
+    left: 0px;
     top: -80px;
-    transition: all 500ms ease;
+    transition: top 500ms ease;
 }
 
 .pull {
@@ -172,11 +173,11 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 150ms ease-out;
 }
 
 .text {
     font-family: 'Russo One', sans-serif;
+    width: 3rem;
     margin-right: 1rem;
     user-select: none;
     cursor: pointer;
@@ -329,6 +330,62 @@ input {
     visibility: hidden;
 }
 
+.correct {
+    top: 5rem !important;
+}
+
 .images:hover+.hover {
     visibility: visible;
+}
+
+@media (max-width:750px) {
+    .correct {
+        top: 30.5rem !important;
+        left: 1.5rem;
+    }
+
+    .hover {
+        top: 3rem;
+    }
+
+    nav {
+        top: 0px;
+        height: 100%;
+        width: 12rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        transition: left 500ms ease;
+        left: -145px;
+    }
+
+    .list {
+        flex-direction: column;
+        height: 70%;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+        transition: none;
+    }
+
+    .pencil-options {
+        left: 8rem;
+        top: -2rem;
+    }
+
+    .eraser-options {
+        top: -0.5rem;
+        left: 8rem;
+    }
+
+    .magnifier {
+        top: -0.5rem;
+        left: 6rem;
+    }
+
+
+    .pull {
+        transform: rotate(270deg);
+    }
+
 }
